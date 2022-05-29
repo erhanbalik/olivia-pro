@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+
+// Import Components
+import Header from './Components/Navbar/Header';
+
+import Pages from './Components/Pages/Pages';
+// Import NPM Packages
+import {BrowserRouter} from 'react-router-dom'
 
 function App() {
+
+    const [mode, setMode] = useState('light');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${mode === 'light' ? 'text-black' : 'text-light'}`}>
+      <BrowserRouter>
+        <Header mode={mode} setMode={setMode} />
+        <Pages/>
+      </BrowserRouter>
     </div>
   );
 }
