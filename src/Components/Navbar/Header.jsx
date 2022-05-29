@@ -1,4 +1,4 @@
-// Components
+// Components 
 import Basket from './Basket';
 // ICONS
 import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
