@@ -1,5 +1,6 @@
 import Login from './Login';
 import MainMenu from './MainMenu';
+import Products from '../Products/Products';
 import {Route, Routes} from "react-router-dom";
 
 const Pages = () => {
@@ -7,7 +8,8 @@ const Pages = () => {
         <>
             <Routes>
                 <Route path="/" element={<MainMenu/>}/>
-                <Route path="login" element={<Login/>} />
+                <Route path="Login" element={<Login/>} />
+                <Route path="Products" element={<Products/>} />
             </Routes>
         </>
     );

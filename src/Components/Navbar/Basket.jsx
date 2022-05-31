@@ -1,12 +1,10 @@
-import {useState} from 'react';
 import {Button, Offcanvas} from 'react-bootstrap';
 import {RiShoppingBasketLine} from 'react-icons/ri';
+import {useContext} from "react";
+import DataContext from "../../Context/Context";
 
 function Basket () {
-
-    const [basket, setBasket] = useState(false);
-    const basketShow = () => setBasket(true);
-    const handleClose = () => setBasket(false);
+    const {basket,basketShow,handleClose,basketItem, handleDelete} = useContext(DataContext);
 
     return (
         <>
@@ -17,10 +15,25 @@ function Basket () {
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Your Items</Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
-                </Offcanvas.Body>
+                { // If there are items in the basket then show them
+                    basketItem.length > 0 ?
+                        <Offcanvas.Body>
+                            {
+                                basketItem.map((item) => {
+                                    return (
+                                        <div key={item.id}>
+                                            <h5>{item.name}</h5>
+                                            <p>{item.price}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                            <Button variant="danger" onClick={handleDelete} >
+                                {basketItem.length === 1 ? "Delete" : "Delete All"}
+                            </Button>
+                        </Offcanvas.Body>
+                        : <p className='text-center'>Your Basket Empty</p>
+                }
             </Offcanvas>
         </>
     )

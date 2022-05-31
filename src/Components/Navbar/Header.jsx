@@ -1,24 +1,15 @@
 // Components 
 import Basket from './Basket';
+import Settings from './Settings'
 // ICONS
-import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
 import {GiHeartBottle} from 'react-icons/gi';
 // NPM packages
 import {Nav, Navbar, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Link} from 'react-router-dom';
 
-function Header({mode, setMode}) {
+function Header() {
 
-    const changeMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            document.body.style.backgroundColor = '#343a40';
-        } else {
-            setMode('light');
-            document.body.style.backgroundColor = '#f8f9fa';
-        }
-    }
     return (
 
             <Navbar className="nav justify-content-around text-bg-light navbar-dark bg-dark navbar-collapse" >
@@ -29,25 +20,24 @@ function Header({mode, setMode}) {
                     <LinkContainer to="/">
                         <Nav.Link>Home</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/product">
+                    <LinkContainer to="/Products">
                         <Nav.Link>Products</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/about">
+                    <LinkContainer to="/About">
                         <Nav.Link>About Us</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/contact">
+                    <LinkContainer to="/Contact">
                         <Nav.Link>Contact Us</Nav.Link>
                     </LinkContainer>
                 </Nav>
-                <div>
-                    <Button onClick={changeMode} variant={`${mode === 'light' ? 'dark' : 'light'}`}>
-                        {mode === 'light' ? <BsFillSunFill/> : <BsFillMoonFill/>}
-                    </Button>
+
+                <Nav className="ml-auto">
                     <Basket />
-                    <Link to='login'>
-                    <Button>LogIn</Button>
+                    <Settings/>
+                    <Link to='Login' >
+                        <Button>LogIn</Button>
                     </Link>
-                </div>
+                </Nav>
             </Navbar>
 
     )
