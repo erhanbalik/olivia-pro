@@ -1,11 +1,24 @@
-import {Button, Offcanvas} from 'react-bootstrap';
+import BasketSingleItem from './BasketSingleItem';
+import {Button, Offcanvas, Container, Row} from 'react-bootstrap';
 import {RiShoppingBasketLine} from 'react-icons/ri';
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import DataContext from "../../Context/Context";
 
 function Basket () {
-    const {basket,basketShow,handleClose,basketItem, handleDelete} = useContext(DataContext);
+    const {basket, basketShow, handleClose, basketItem, handleDelete, value ,setValue} = useContext(DataContext);
 
+    const totalVal = () => {
+        let total = 0;
+        [...basketItem].map((item) => {
+            return (
+                total = parseInt(item.price) + parseInt(value),
+                setValue(total)
+            )
+        })
+    }
+    useEffect(() => {
+        totalVal();
+    }, [basketItem, setValue]);
     return (
         <>
         <Button className='bg-transparent border-0' onClick={basketShow}>
@@ -18,21 +31,26 @@ function Basket () {
                 { // If there are items in the basket then show them
                     basketItem.length > 0 ?
                         <Offcanvas.Body>
+                            <Container className="pb-3">
+                                <Row xs={2}>
+                                <p>Total Value: {value}</p>
+                                <Button variant="danger" onClick={handleDelete} >
+                                    {basketItem.length === 1 ? "Delete" : "Delete All"}
+                                </Button>
+                                </Row>
+                            </Container>
                             {
                                 basketItem.map((item) => {
                                     return (
                                         <div key={item.id}>
-                                            <h5>{item.name}</h5>
-                                            <p>{item.price}</p>
+                                            <BasketSingleItem item={item}/>
                                         </div>
                                     )
                                 })
                             }
-                            <Button variant="danger" onClick={handleDelete} >
-                                {basketItem.length === 1 ? "Delete" : "Delete All"}
-                            </Button>
+
                         </Offcanvas.Body>
-                        : <p className='text-center'>Your Basket Empty</p>
+                        : <Container> <p className='text-center'>Your Basket Empty</p></Container>
                 }
             </Offcanvas>
         </>

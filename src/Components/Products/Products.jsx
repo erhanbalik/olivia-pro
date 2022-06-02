@@ -1,5 +1,4 @@
 import {productList} from './ProductsList';
-import {RiShoppingBasketLine} from 'react-icons/ri';
 import {Row, Col, Card, Container, Button} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import {useContext} from "react";
@@ -7,7 +6,7 @@ import DataContext from "../../Context/Context";
 
 function Products() {
 
-    const {basketItem, setBasketItem,basketShow} = useContext(DataContext);
+    const {basketItem, setBasketItem} = useContext(DataContext);
 
     return (
         <Container className='mt-4'>
@@ -18,21 +17,19 @@ function Products() {
                     return (
                         <Col key={product.id}>
                             <Card className='bg-opacity-75 bg-light align-items-center text-dark' >
-                                <Card.Img style={{height: "60%", width: "90%"}} src={product.image} />
+                                <LinkContainer to={`/Products/${product.id}`}>
+                                    <Card.Link>
+                                        <Card.Img src={product.image} />
+                                    </Card.Link>
+                                </LinkContainer>
                                 <Card.Body>
-                                <Card.Header className='text-center'>{product.name}</Card.Header>
                                     <Card.Text>
-                                        {product.description}
+                                        <p>{product.name} {product.price}</p>
                                     </Card.Text>
-                                    <Card.Footer className='text-center'>
-                                        <LinkContainer to={`/Products/${product.id}`}>
-                                            <Card.Link>View Product</Card.Link>
-                                        </LinkContainer>
+                                    <Card.Text className='text-center'>
                                             <Button variant="success" className="mx-4" onClick={() => {
-                                                setBasketItem([...basketItem, product]);
-                                                basketShow();
-                                            }}><RiShoppingBasketLine/></Button>
-                                    </Card.Footer>
+                                                setBasketItem([...basketItem, product]);}}>Add to Card</Button>
+                                    </Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
