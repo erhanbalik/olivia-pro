@@ -11,7 +11,7 @@ function ProductDetail() {
 
     return (
         <Container className={`text-${mode === 'light' ? 'dark' : 'light'}`}>
-            <h1 className='text-center mt-5'>Product Details</h1>
+            <h1 className='text-center mt-5'>Details</h1>
             {
                 productList.map((product) => {
                     if(product.id === id) {
@@ -32,16 +32,13 @@ function ProductDetail() {
                                         <Card className='w-100 bg-transparent border-0'>
                                             <Card.Body>
                                                 <Card.Title>{product.name}</Card.Title>
-                                                <Card.Subtitle>
-                                                    <p>Subtitle</p>
-                                                </Card.Subtitle>
                                                 <Card.Text>
                                                     <p>{product.description}</p>
                                                 </Card.Text>
                                                 <Container>
                                                     <Row xs={2}>
                                                         <Col>
-                                                            <h3><p>{product.price}</p></h3>
+                                                            <h3><p>$ {product.price}</p></h3>
                                                         </Col>
                                                         <ProductAdd product={product} />
                                                     </Row>

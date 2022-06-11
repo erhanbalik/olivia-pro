@@ -1,7 +1,6 @@
 import {Dropdown} from "react-bootstrap";
 // ICONS
-import {AiFillSetting} from "react-icons/ai";
-import {BsFillMoonFill, BsFillSunFill, BsTranslate} from "react-icons/bs";
+import {BsFillMoonFill, BsFillSunFill} from "react-icons/bs";
 // CONTEXT API
 import {useContext} from 'react';
 import DataContext from '../../Context/Context';
@@ -20,14 +19,6 @@ function Settings() {
         }
     }
     return (
-        <Dropdown className='px-2'>
-            <Dropdown.Toggle split='false' variant="transparent border-0" id="dropdown-basic">
-                <AiFillSetting className='text-light' />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={`${mode === 'light' ? 'bg-light' : 'bg-secondary'}`}>
-                <Dropdown.Header className={`${mode === 'light' ? 'text-secondary' : 'text-light'}`}>
-                    Settings
-                </Dropdown.Header>
                 <Dropdown.Item onClick={changeMode}>
                     {mode === 'light' ?
                         <div>
@@ -37,9 +28,6 @@ function Settings() {
                             <BsFillSunFill/> <span className='px-1'>Light</span>
                         </div>}
                 </Dropdown.Item>
-                <Dropdown.Item><BsTranslate/></Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
     )
 }
 export default Settings;

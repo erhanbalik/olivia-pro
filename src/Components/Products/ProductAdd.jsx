@@ -10,7 +10,7 @@ function ProductAdd ({product}) {
         if (checkBasket) {
             const newBasketItem = basketItem.map(item => {
                 if (item.id === product.id) {
-                    return {...item, count: item.count + 1}
+                    return {...item, count: item.count}
                 } else {
                     return item;
                 }
@@ -19,7 +19,7 @@ function ProductAdd ({product}) {
             setValue(parseInt(value) + parseInt(product.price));
 
         } else {
-            const count = (countItem -1) * (product.price);
+            const count = (countItem - 1) * (product.price);
             setBasketItem([...basketItem, {...product, count: countItem}]);
             setValue(parseInt(value) + parseInt(count));
             setCountItem(1)
@@ -29,11 +29,11 @@ function ProductAdd ({product}) {
     return (
         <>
             <Col>
-                <Button onClick={handleAddToBasket}>Add Basket</Button>
+                <Button onClick={handleAddToBasket}>Add Card</Button>
             </Col>
             <Col>
                 <Button onClick={handleIncrease}>+</Button>
-                <span>{countItem}</span>
+                <span className='mx-2'>{countItem}</span>
                 <Button onClick={handleDecrease}>-</Button>
             </Col>
         </>

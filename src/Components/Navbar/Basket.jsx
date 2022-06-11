@@ -1,5 +1,5 @@
 import BasketSingleItem from './BasketSingleItem';
-import {Button, Offcanvas, Container, Row} from 'react-bootstrap';
+import {Button, Offcanvas, Container, Row, Col} from 'react-bootstrap';
 import {RiShoppingBasketLine} from 'react-icons/ri';
 import {useContext, useEffect} from "react";
 import DataContext from "../../Context/Context";
@@ -21,9 +21,13 @@ function Basket () {
     }, [basketItem, setValue]);
     return (
         <>
-        <Button className='bg-transparent border-0' onClick={basketShow}>
-            <RiShoppingBasketLine/>
-        </Button>
+            <Container>
+                <Col>
+                    <Button className='border-0 me-2' variant="outline-primary" onClick={basketShow}>
+                        <RiShoppingBasketLine/>
+                    </Button>
+                </Col>
+            </Container>
             <Offcanvas show={basket} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Your Items</Offcanvas.Title>
@@ -50,7 +54,7 @@ function Basket () {
                             }
 
                         </Offcanvas.Body>
-                        : <Container> <p className='text-center'>Your Basket Empty</p></Container>
+                        : <Container> <p className='text-center'>Your Card is Empty</p></Container>
                 }
             </Offcanvas>
         </>

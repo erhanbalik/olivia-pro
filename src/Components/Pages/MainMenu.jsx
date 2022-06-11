@@ -1,9 +1,11 @@
-import Hero from '../../Components/Hero/Hero';
+import Hero from '../Menu/Hero';
+import Main from '../Menu/Main';
 
 const MainMenu = () => {
     return (
         <>
             <Hero/>
+            <Main/>
         </>
     )
  }

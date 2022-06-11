@@ -34,6 +34,9 @@ export const DataProvider = ({children}) => {
     // Single Item Price State
     const [singleItemPrice, setSingleItemPrice] = useState();
 
+    // PRODUCT API STATE
+    const [product, setProduct] = useState([]);
+
     return (
         <DataContext.Provider value={{
             mode,setMode,
@@ -41,7 +44,8 @@ export const DataProvider = ({children}) => {
             basketItem, setBasketItem, handleDelete,
             value, setValue, itemCount, setItemCount,
             singleItemPrice, setSingleItemPrice,
-            countItem, setCountItem, handleIncrease, handleDecrease
+            countItem, setCountItem, handleIncrease, handleDecrease,
+            product, setProduct
         }}>
             {children}
         </DataContext.Provider>
